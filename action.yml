@@ -1,5 +1,5 @@
 name: 'Doxygen GitHub Pages Deploy Action'
-author: 'Jonah Lawrence'
+author: 'Jonah Lawrence (Original), ELO (modified)'
 description: 'Make docs with Doxygen then deploy the generated HTML to GitHub pages'
 branding:
   icon: "upload-cloud"
@@ -33,8 +33,12 @@ runs:
       with:
         submodules: "true"
 
+    - name: Set up Homebrew
+      id: set-up-homebrew
+      uses: Homebrew/actions/setup-homebrew@master
+
     - name: Install Doxygen
-      run: sudo apt-get install doxygen graphviz -y
+      run: brew install doxygen graphviz
       shell: bash
 
     - name: Generate Doxygen Documentation
